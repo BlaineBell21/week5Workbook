@@ -18,9 +18,9 @@ public class Main {
         Hovercraft h1 = new Hovercraft("White", "Hoverwork", "Griffon Hoverwork 2000TD", 3, 2000);
 
         h1.getColor();
-       m1.getVehicleBrand();
-       c1.getNumberOfPassengers();
-       s1.getVehicleModel();
+        m1.getVehicleBrand();
+        c1.getNumberOfPassengers();
+        s1.getVehicleModel();
 
     }
 

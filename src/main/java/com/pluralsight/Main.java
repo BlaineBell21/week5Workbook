@@ -1,23 +1,27 @@
 package com.pluralsight;
 
-import com.pluralsight.model.Bird;
-import com.pluralsight.model.Cat;
-import com.pluralsight.model.Dog;
-import com.pluralsight.model.Frog;
-
+import com.pluralsight.model.Car;
+import com.pluralsight.model.Hovercraft;
+import com.pluralsight.model.Moped;
+import com.pluralsight.model.SemiTruck;
+//public Moped(String color, String vehicleBrand, String vehicleModel, int numberOfPassengers, int fuelCapacity){
+//        super(color, vehicleBrand, vehicleModel, numberOfPassengers, fuelCapacity);
+//    }
 public class Main {
+    static void main(String[] args) {
+        Moped m1 = new Moped("Black", "Yamaha", "2026 Zuma 125", 2, (int) 1.6);
 
-   static void main(String[] args) {
-//       Cat c = new Cat();
-//       c.makesSound();
-//
-//       Dog d = new Dog();
-//       d.makesSound();
-//
-//       Bird b = new Bird();
-//       b.makesSound();
-//
-//       Frog f = new Frog();
-//       f.makesSound();
-   }
+        Car c1 = new Car("Black", "Chevorolet", "Bolt EV LT", 5, 0);
+
+        SemiTruck s1 = new SemiTruck("White", "Volvo", "2023 Volvo VNL64860", 2, 240);
+
+        Hovercraft h1 = new Hovercraft("White", "Hoverwork", "Griffon Hoverwork 2000TD", 3, 2000);
+
+        h1.getColor();
+       m1.getVehicleBrand();
+       c1.getNumberOfPassengers();
+       s1.getVehicleModel();
+
+    }
+
 }

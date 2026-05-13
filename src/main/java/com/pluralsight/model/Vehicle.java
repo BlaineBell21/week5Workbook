@@ -1,57 +1,73 @@
 package com.pluralsight.model;
 
-public class Vehicle {
-    private String color;
-    private String vehicleBrand;
+import java.util.Objects;
+
+public class Vehicle extends Asset{
     private String vehicleModel;
-    private int numberOfPassengers;
-    private int fuelCapacity;
+    private int year;
+    private int odometer;
 
-    public Vehicle(String color, String vehicleBrand, String vehicleModel, int numberOfPassengers, int fuelCapacity) {
-        this.color = color;
-        this.vehicleBrand = vehicleBrand;
-        this.vehicleModel = vehicleModel;
-        this.numberOfPassengers = numberOfPassengers;
-        this.fuelCapacity = fuelCapacity;
+    public Vehicle(String description, String dateAcquired, double originalCost) {
+        super(description, dateAcquired, originalCost);
     }
 
-    public void getColor() {
-        System.out.println("The color of this vehicle is " + color);
-    }
-
-    public void setColor(String color) {
-        this.color = color;
-    }
-
-    public void getVehicleBrand() {
-        System.out.println("The brand of this vehicle is " + vehicleBrand);
-    }
-
-    public void setVehicleBrand(String vehicleBrand) {
-        this.vehicleBrand = vehicleBrand;
-    }
-
-    public void getVehicleModel() {
-        System.out.println("The model of this vehicle is " + vehicleModel);
+    public String getVehicleModel() {
+        return vehicleModel;
     }
 
     public void setVehicleModel(String vehicleModel) {
         this.vehicleModel = vehicleModel;
     }
 
-    public void getNumberOfPassengers() {
-        System.out.println("This vehicle can hold " + numberOfPassengers + " passenger(s)");
+    public int getYear() {
+        return year;
     }
 
-    public void setNumberOfPassengers(int numberOfPassengers) {
-        this.numberOfPassengers = numberOfPassengers;
+    public void setYear(int year) {
+        this.year = year;
     }
 
-    public int getFuelCapacity() {
-        return fuelCapacity;
+    public int getOdometer() {
+        return odometer;
     }
 
-    public void setFuelCapacity(int fuelCapacity) {
-        this.fuelCapacity = fuelCapacity;
+    public void setOdometer(int odometer) {
+        this.odometer = odometer;
+    }
+
+    public double calculateYearCost(double depreciation){
+        double vehicleCost = getOriginalCost();
+
+        double reducedCost = vehicleCost * depreciation;
+        double currentValue = vehicleCost - reducedCost;
+        System.out.println(currentValue);
+        return currentValue;
+    }
+
+    @Override
+    public double getValue(){// A car's value is determined as
+
+        double totalAssetValue = 0;
+        int vehicleYears = getYear();
+
+        if(vehicleYears >= 0 && vehicleYears <= 3){
+            totalAssetValue += calculateYearCost(.03);
+        } else if(vehicleYears >= 4 && vehicleYears <= 6){
+            totalAssetValue += calculateYearCost(.06);
+        }  else if(vehicleYears >= 7 && vehicleYears <= 10){
+            totalAssetValue += calculateYearCost(.08);
+        } else if (vehicleYears > 10) {
+            totalAssetValue += getOriginalCost() - 1000;
+        }
+
+        String vehicleModel = getVehicleModel();
+        int vehicleMiles = getOdometer();
+
+        if ((!Objects.equals(vehicleModel, "Honda") && !Objects.equals(vehicleModel, "Toyota") && vehicleMiles > 100000)) {
+           totalAssetValue += calculateYearCost(.25);
+            // MINUS reduce final value by 25% if over 100,000 miles
+        }
+
+        return totalAssetValue;
     }
 }
